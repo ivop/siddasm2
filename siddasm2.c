@@ -34,6 +34,9 @@
 #define TMPSIZ 64
 
 #define GET8(f)     (fgetc(f))
+// XXX this triggers undefined behaviour in the C standard, order of calling
+// is not guaranteed. It works with gcc and clang (for now), but this should
+// be --->>> FIXED
 #define GET16LE(f)  (GET8(f)+(GET8(f)<<8))
 #define GET16BE(f)  ((GET8(f)<<8)+GET8(f))
 #define GET32LE(f)  (GET16LE(f)+(GET16LE(f)<<16))
