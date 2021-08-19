@@ -239,8 +239,8 @@ static void decode_opcode(unsigned char opcode, int decode_mode, FILE *fp) {
             if (!memmark[word_param]) {
                 add_start_addr(word_param);
                 add_end_addr(pos);
-                block_end = 1;
             }
+            block_end = 1;
         break;
         case 0x6c:      // JMP (aaaa)
             fprintf(fp, "; JMP defined at run-time: possibly incorrect code dumping!\n");
