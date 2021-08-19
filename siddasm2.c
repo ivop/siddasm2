@@ -33,14 +33,16 @@
 #define TABSIZ 1024
 #define TMPSIZ 64
 
-#define GET8(f)     (fgetc(f))
-// XXX this triggers undefined behaviour in the C standard, order of calling
-// is not guaranteed. It works with gcc and clang (for now), but this should
-// be --->>> FIXED
-#define GET16LE(f)  (GET8(f)+(GET8(f)<<8))
-#define GET16BE(f)  ((GET8(f)<<8)+GET8(f))
-#define GET32LE(f)  (GET16LE(f)+(GET16LE(f)<<16))
-#define GET32BE(f)  ((GET16BE(f)<<16)+GET16BE(f))
+static inline int GET8   (FILE *f) { return fgetc(f); }
+static inline int GET16LE(FILE *f) { int t=GET8(f); return t + (GET8(f)<<8); }
+static inline int GET16BE(FILE *f) { int t=GET8(f); return (t<<8) + GET8(f); }
+static inline int GET32LE(FILE *f) {
+    int t = GET16LE(f); return t + (GET16LE(f)<<16);
+}
+static inline int GET32BE(FILE *f) {
+    int t = GET16BE(f); return (t<<16) + GET16BE(f);
+}
+
 #define fskip(f,x)  fseek(f,x,SEEK_CUR)
 
 #define TAGLE(a,b,c,d)  (a|(b<<8)|(c<<16)|(d<<24))
