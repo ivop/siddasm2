@@ -359,13 +359,20 @@ static void read_psid(FILE *f) {
 }
 
 static void read_nsf(FILE *f) {
+    unsigned char banks[8];
+    int i, x;
+
     fskip(f,4);                 // 01Ah, version, songs, starting song
     load_address = GET16LE(f);
     init_address = GET16LE(f);
     play_address = GET16LE(f);
     fskip(f,32*3);              // name, artist, copyright
     fskip(f,2);                 // NTSC speed in microseconds
-    fskip(f,8);                 // Initial Bank Switch values
+    fread(banks, 1, 8, f);
+    for (i=0; i<8; i++)
+        x += banks[i];
+    if (x)
+        exit_error("bankswitched NSF is not supported\n");
     fskip(f,2);                 // PAL speed in microseconds
     fskip(f,2);                 // PAL/NTSC flags, Extra Sound Chip flags
     fskip(f,4);                 // reserved
