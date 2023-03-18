@@ -425,14 +425,14 @@ static const struct label {
 };
 
 static const struct label nes_labels[] = {
-    { 0x4000, "NESSW1REG1" },   { 0x4001, "NESSW1REG2" },
-    { 0x4002, "NESSW1REG3" },   { 0x4003, "NESSW1REG4" },
-    { 0x4004, "NESSW2REG1" },   { 0x4005, "NESSW2REG2" },
-    { 0x4006, "NESSW2REG3" },   { 0x4007, "NESSW2REG4" },
-    { 0x4008, "NESTRIREG1" },   { 0x400a, "NESTRIREG3" },
-    { 0x400b, "NESTRUREG4" },   { 0x400c, "NESNOISEREG1" },
-    { 0x400e, "NESNOISEREG3" }, { 0x400f, "NESNOISEREG4" },
-    { 0x4015, "NESCHNENABLE" },
+    { 0x4000, "PUL1_DLCV" },    { 0x4001, "PUL1_EPNS" },
+    { 0x4002, "PUL1_TMRL" },    { 0x4003, "PUL1_LEN_TMRH" },
+    { 0x4004, "PUL2_DLCV" },    { 0x4005, "PUL2_EPNS" },
+    { 0x4006, "PUL2_TMRL" },    { 0x4007, "PUL2_LEN_TMRH" },
+    { 0x4008, "TRI_CTRL_CNT" }, { 0x400a, "TRI_TMRL" },
+    { 0x400b, "TRI_LEN_TMRH" }, { 0x400c, "NOI_LCV" },
+    { 0x400e, "NOI_LP" },       { 0x400f, "NOI_LEN" },
+    { 0x4015, "APU_CONTROL" },
     { 0, NULL }
 };
 
